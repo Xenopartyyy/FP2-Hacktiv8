@@ -21,7 +21,7 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 
 > Note: Untuk method PUT dan DELETE diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login
 
-
+#
 
 ### Photos
   Berikut ini adalah beberapa endpoint yang dapat diakses untuk tabel Photos
@@ -33,7 +33,7 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 | PUT | [https://fp2-hacktiv8-production.up.railway.app/photos/:photoId][PlGd] |
 | DELETE | [https://fp2-hacktiv8-production.up.railway.app/photos/:photoId][PlOd] |
 > Note: Seluruh method diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login.Untuk methode PUT dan DELETE hanya bisa dilakukan oleh user yang membuat photo dan diperlukan parameter Id photo pada URL
-#
+
 #
 
 ### Comments
@@ -46,7 +46,7 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 | PUT | [https://fp2-hacktiv8-production.up.railway.app/comments/:commentId][PlGd] |
 | DELETE | [https://fp2-hacktiv8-production.up.railway.app/comments/:commentId][PlOd] |
 > Note: Seluruh method diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login.Untuk methode PUT dan DELETE hanya bisa dilakukan oleh user yang membuat comment dan diperlukan parameter Id comment pada URL 
-#
+
 #
 
  ### SocialMedias
