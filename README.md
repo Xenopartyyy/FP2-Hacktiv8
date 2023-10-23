@@ -14,10 +14,10 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
  
  | Method | URL |
 | ------ | ------ |
-| POST | [https://fp2-hacktiv8-production.up.railway.app/users/register][PlDb] |
-| POST | [https://fp2-hacktiv8-production.up.railway.app/users/login][PlGh] |
-| PUT | [https://fp2-hacktiv8-production.up.railway.app/users][PlGd] |
-| DELETE | [https://fp2-hacktiv8-production.up.railway.app/users][PlOd] |
+| POST | [https://fp2-hacktiv8-production.up.railway.app/users/register] |
+| POST | [https://fp2-hacktiv8-production.up.railway.app/users/login] |
+| PUT | [https://fp2-hacktiv8-production.up.railway.app/users] |
+| DELETE | [https://fp2-hacktiv8-production.up.railway.app/users] |
 
 > Note: Untuk method PUT dan DELETE diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login
 
@@ -28,10 +28,10 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 
  | Method | URL |
 | ------ | ------ |
-| POST | [https://fp2-hacktiv8-production.up.railway.app/photos][PlDb] |
-| GET | [https://fp2-hacktiv8-production.up.railway.app/photos][PlGh] |
-| PUT | [https://fp2-hacktiv8-production.up.railway.app/photos/:photoId][PlGd] |
-| DELETE | [https://fp2-hacktiv8-production.up.railway.app/photos/:photoId][PlOd] |
+| POST | [https://fp2-hacktiv8-production.up.railway.app/photos] |
+| GET | [https://fp2-hacktiv8-production.up.railway.app/photos]|
+| PUT | [https://fp2-hacktiv8-production.up.railway.app/photos/:photoId] |
+| DELETE | [https://fp2-hacktiv8-production.up.railway.app/photos/:photoId]|
 > Note: Seluruh method diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login.Untuk methode PUT dan DELETE hanya bisa dilakukan oleh user yang membuat photo dan diperlukan parameter Id photo pada URL
 
 #
@@ -41,10 +41,10 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 
  | Method | URL |
 | ------ | ------ |
-| POST | [https://fp2-hacktiv8-production.up.railway.app/comments][PlDb] |
-| GET | [https://fp2-hacktiv8-production.up.railway.app/comments][PlGh] |
-| PUT | [https://fp2-hacktiv8-production.up.railway.app/comments/:commentId][PlGd] |
-| DELETE | [https://fp2-hacktiv8-production.up.railway.app/comments/:commentId][PlOd] |
+| POST | [https://fp2-hacktiv8-production.up.railway.app/comments] |
+| GET | [https://fp2-hacktiv8-production.up.railway.app/comments] |
+| PUT | [https://fp2-hacktiv8-production.up.railway.app/comments/:commentId] |
+| DELETE | [https://fp2-hacktiv8-production.up.railway.app/comments/:commentId] |
 > Note: Seluruh method diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login.Untuk methode PUT dan DELETE hanya bisa dilakukan oleh user yang membuat comment dan diperlukan parameter Id comment pada URL 
 
 #
@@ -54,9 +54,9 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 
  | Method | URL |
 | ------ | ------ |
-| POST | [https://fp2-hacktiv8-production.up.railway.app/socialmedias][PlDb] |
-| GET | [https://fp2-hacktiv8-production.up.railway.app/socialmedias][PlGh] |
-| PUT | [https://fp2-hacktiv8-production.up.railway.app/socialmedias/:socialMediaId][PlGd] |
-| DELETE | [https://fp2-hacktiv8-production.up.railway.app/socialmedias/:socialMediaId][PlOd] |
+| POST | [https://fp2-hacktiv8-production.up.railway.app/socialmedias] |
+| GET | [https://fp2-hacktiv8-production.up.railway.app/socialmedias]|
+| PUT | [https://fp2-hacktiv8-production.up.railway.app/socialmedias/:socialMediaId] |
+| DELETE | [https://fp2-hacktiv8-production.up.railway.app/socialmedias/:socialMediaId] |
 
 > Note: Seluruh method diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login.Untuk methode PUT dan DELETE diperlukan parameter Id social media pada URL, dan hanya bisa dilakukan oleh user yang membuat social media
