@@ -20,8 +20,8 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 | DELETE | [https://fp2-hacktiv8-production.up.railway.app/users][PlOd] |
 
 > Note: Untuk method PUT dan DELETE diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login
-#
-#
+
+
 
 ### Photos
   Berikut ini adalah beberapa endpoint yang dapat diakses untuk tabel Photos
