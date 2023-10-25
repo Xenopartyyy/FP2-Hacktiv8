@@ -5,6 +5,10 @@
 
 Berikut ini adalah final project ke-2 dari hacktiv8, aplikasi ini bernama bernama MyGram, yang dimana pada aplikasi ini  dapat menyimpan foto maupun membuat comment untuk foto orang lain. Aplikasi ini akan dilengkapi dengan proses CRUD.
 
+## Anggota kelompok
+ - Willyawan Maulana - GLNG-KS07-014
+ - Dirham Triyadi - GLNG-KS07-025
+
 ## Endpoint
 Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 
