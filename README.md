@@ -42,7 +42,7 @@ POST Login User
 
 PUT User
 
--Bearer Token
+-Bearer Token <br />
 -Param userId
  ```sh
 {
@@ -69,7 +69,7 @@ DELETE User
 | PUT | [https://fp2-hacktiv8-production.up.railway.app/photos/:photoId] |
 | DELETE | [https://fp2-hacktiv8-production.up.railway.app/photos/:photoId] |
 
-###### Daftar request phoyos
+###### Daftar request photos
 
 POST Photo
 
@@ -89,7 +89,7 @@ GET Photo
 #
 PUT Photo
 
--Bearer Token
+-Bearer Token  <br />
 -Param photoId
  ```sh
 {
@@ -101,11 +101,11 @@ PUT Photo
 #
 DELETE 
 
--Bearer Token
+-Bearer Token  <br />
 -Param PhotoId
 > Note: Seluruh method diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login.Untuk methode PUT dan DELETE hanya bisa dilakukan oleh user yang membuat photo dan diperlukan parameter Id photo pada URL
 #
-#
+
 
 ### Comments
   Berikut ini adalah beberapa endpoint yang dapat diakses untuk tabel Comments
@@ -136,7 +136,7 @@ GET Comment
 #
 PUT Comment
 
--Bearer Token
+-Bearer Token  <br />
 -Param commentId
  ```sh
 {
@@ -146,12 +146,12 @@ PUT Comment
 #
 DELETE 
 
--Bearer Token
+-Bearer Token  <br />
 -Param commentId
 
 > Note: Seluruh method diperlukan autentikasi, sehingga perlu memasukan bearer token terlebih dahulu. Token didapatkan melalui response client saat melakukan login.Untuk methode PUT dan DELETE hanya bisa dilakukan oleh user yang membuat comment dan diperlukan parameter Id comment pada URL 
 #
-#
+
 
  ### SocialMedias
   Berikut ini adalah beberapa endpoint yang dapat diakses untuk tabel SocialMedias
@@ -182,7 +182,7 @@ GET SocialMedia
 #
 PUT SocialMedia
 
--Bearer Token
+-Bearer Token  <br />
 -Param socialMediaId
  ```sh
 {
@@ -193,7 +193,7 @@ PUT SocialMedia
 #
 DELETE 
 
--Bearer Token
+-Bearer Token  <br />
 -Param socialMediaId
 
 
