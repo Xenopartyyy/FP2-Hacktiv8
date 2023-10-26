@@ -7,6 +7,7 @@ import (
 	"project2/model/response"
 	"project2/service"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 )
 
@@ -33,10 +34,11 @@ func (h *commentController) AddNewComment(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&input)
 
-	if err != nil {
-		errorMessages := helper.FormatValidationError(err)
+	comment, err := govalidator.ValidateStruct(input)
+
+	if !comment {
 		response := helper.APIResponse("failed", gin.H{
-			"errors": errorMessages,
+			"errors": err.Error(),
 		})
 		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
@@ -79,10 +81,11 @@ func (h *commentController) DeleteComment(c *gin.Context) {
 
 	err := c.ShouldBindUri(&idCommentUri)
 
-	if err != nil {
-		errorMessages := helper.FormatValidationError(err)
+	comment, err := govalidator.ValidateStruct(idCommentUri)
+
+	if !comment {
 		response := helper.APIResponse("failed", gin.H{
-			"errors": errorMessages,
+			"errors": err.Error(),
 		})
 		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
@@ -160,10 +163,11 @@ func (h *commentController) UpdateComment(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&UpdateComment)
 
-	if err != nil {
-		errorMessages := helper.FormatValidationError(err)
+	comment, err := govalidator.ValidateStruct(UpdateComment)
+
+	if !comment {
 		response := helper.APIResponse("failed", gin.H{
-			"errors": errorMessages,
+			"errors": err.Error(),
 		})
 		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
