@@ -11,10 +11,7 @@ type UserRepository interface {
 	FindByEmail(email string) (entity.User, error)
 	FindByID(ID int) (entity.User, error)
 	Update(ID int, user entity.User) (entity.User, error)
-	// Update(user entity.User) (entity.User, error)
 	Delete(ID int) (entity.User, error)
-	// Get(ID int) (entity.User, error)
-	// GetAll() ([]entity.User, error)
 }
 
 type userRepository struct {

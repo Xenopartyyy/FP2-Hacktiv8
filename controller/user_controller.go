@@ -54,31 +54,6 @@ func (h *userController) RegisterUser(c *gin.Context) {
 
 	response := helper.APIResponse("created", registerResponse)
 	c.JSON(201, response)
-	// c.JSON(http.StatusOK, gin.H{
-	// 	"data": convertToUserResponse(user),
-	// })
-
-	// // send to service
-	// newUser, err := h.userService.CreateUser(input)
-
-	// if err != nil {
-	// 	response := helper.APIResponse("failed", err)
-	// 	c.JSON(http.StatusUnprocessableEntity, response)
-	// 	return
-	// }
-
-	// newUserResponse := response.UserRegisterResponse{
-	// 	ID:        newUser.ID,
-	// 	Age:       newUser.Age,
-	// 	Email:     newUser.Email,
-	// 	Password:  newUser.Password,
-	// 	Username:  newUser.Username,
-	// 	CreatedAt: newUser.CreatedAt,
-	// }
-
-	// response := helper.APIResponse("created", newUserResponse)
-	// c.JSON(http.StatusOK, response)
-	// return
 }
 
 func (h *userController) Login(c *gin.Context) {
@@ -219,13 +194,3 @@ func (h *userController) TestUser(c *gin.Context) {
 
 	c.JSON(http.StatusOK, helper.APIResponse("created", id_user))
 }
-
-// func convertToUserResponse(u entity.User) response.UserRegisterResponse {
-// 	return response.UserRegisterResponse{
-// 		Age:      u.Age,
-// 		Email:    u.Email,
-// 		ID:       u.ID,
-// 		Password: u.Password,
-// 		Username: u.Username,
-// 	}
-// }
