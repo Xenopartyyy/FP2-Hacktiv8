@@ -25,16 +25,6 @@ type GetPhotoUser struct {
 	User      UserInPhoto `json:"User"`
 }
 
-// type GetPhotoDetailUser struct {
-// 	ID        int              `json:"id"`
-// 	Title     string           `json:"title"`
-// 	Caption   string           `json:"caption"`
-// 	PhotoURL  string           `json:"photo_url"`
-// 	CreatedAt time.Time        `json:"created_at"`
-// 	User      UserInPhoto      `json:"user"`
-// 	Comments  []entity.Comment `json:"comments"`
-// }
-
 type UserInPhoto struct {
 	Username string `json:"username"`
 	Email    string `json:"email"`
