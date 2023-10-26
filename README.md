@@ -9,6 +9,12 @@ Berikut ini adalah final project ke-2 dari hacktiv8, aplikasi ini bernama bernam
  - Willyawan Maulana - GLNG-KS07-014
  - Dirham Triyadi - GLNG-KS07-025
 
+## User Login
+```
+Email : dirham@gmail.com
+Password : dirham
+```
+
 ## Endpoint
 Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 
