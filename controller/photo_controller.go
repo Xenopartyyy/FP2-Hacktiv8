@@ -7,6 +7,7 @@ import (
 	"project2/model/response"
 	"project2/service"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 )
 
@@ -32,10 +33,11 @@ func (h *photoController) AddNewPhoto(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&input)
 
-	if err != nil {
-		errorMessages := helper.FormatValidationError(err)
+	photo, err := govalidator.ValidateStruct(input)
+
+	if !photo {
 		response := helper.APIResponse("failed", gin.H{
-			"errors": errorMessages,
+			"errors": err.Error(),
 		})
 		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
@@ -227,10 +229,11 @@ func (h *photoController) UpdatePhoto(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&updatePhoto)
 
-	if err != nil {
-		errorMessages := helper.FormatValidationError(err)
+	photo, err := govalidator.ValidateStruct(updatePhoto)
+
+	if !photo {
 		response := helper.APIResponse("failed", gin.H{
-			"errors": errorMessages,
+			"errors": err.Error(),
 		})
 		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
