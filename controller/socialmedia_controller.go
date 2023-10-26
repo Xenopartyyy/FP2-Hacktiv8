@@ -7,6 +7,7 @@ import (
 	"project2/model/response"
 	"project2/service"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
 )
 
@@ -33,14 +34,13 @@ func (h *socialmediaController) AddNewSocialMedia(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&input)
 
-	if err != nil {
-		errors := helper.FormatValidationError(err)
-		errorMessages := gin.H{
-			"errors": errors,
-		}
+	socialmedia, err := govalidator.ValidateStruct(input)
 
-		response := helper.APIResponse("failed", errorMessages)
-		c.JSON(http.StatusUnprocessableEntity, response)
+	if !socialmedia {
+		response := helper.APIResponse("failed", gin.H{
+			"errors": err.Error(),
+		})
+		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
 	}
 
@@ -80,10 +80,11 @@ func (h *socialmediaController) DeleteSocialmedia(c *gin.Context) {
 
 	err := c.ShouldBindUri(&idSocialMediaUri)
 
-	if err != nil {
-		errorMessages := helper.FormatValidationError(err)
+	socialmedia, err := govalidator.ValidateStruct(idSocialMediaUri)
+
+	if !socialmedia {
 		response := helper.APIResponse("failed", gin.H{
-			"errors": errorMessages,
+			"errors": err.Error(),
 		})
 		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
@@ -171,10 +172,11 @@ func (h *socialmediaController) UpdateSocialMedia(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&update)
 
-	if err != nil {
-		errorMessages := helper.FormatValidationError(err)
+	socialmedia, err := govalidator.ValidateStruct(update)
+
+	if !socialmedia {
 		response := helper.APIResponse("failed", gin.H{
-			"errors": errorMessages,
+			"errors": err.Error(),
 		})
 		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
