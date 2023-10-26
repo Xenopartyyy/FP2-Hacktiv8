@@ -26,26 +26,6 @@ func NewUserService(userRepository repository.UserRepository) *userService {
 }
 
 func (s *userService) CreateUser(input input.UserRegisterInput) (entity.User, error) {
-	// newUser := entity.User{}
-	// newUser.Username = input.Username
-	// newUser.Age = input.Age
-	// newUser.Email = input.Email
-
-	// passwordHash, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.MinCost)
-
-	// if err != nil {
-	// 	return entity.User{}, err
-	// }
-
-	// newUser.Password = string(passwordHash)
-
-	// createdUser, err := s.userRepository.Save(newUser)
-
-	// if err != nil {
-	// 	return entity.User{}, err
-	// }
-
-	// return createdUser, nil
 	passwordHash, err := bcrypt.GenerateFromPassword([]byte(input.Password), bcrypt.MinCost)
 
 	if err != nil {

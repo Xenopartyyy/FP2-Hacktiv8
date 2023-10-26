@@ -9,8 +9,8 @@ import (
 	"project2/model/response"
 	"project2/service"
 
+	"github.com/asaskevich/govalidator"
 	"github.com/gin-gonic/gin"
-	"github.com/go-playground/validator"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -27,17 +27,17 @@ func (h *userController) RegisterUser(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&input)
 
-	if err != nil {
-		// log.Fatal(err)
-		for _, e := range err.(validator.ValidationErrors) {
-			errorMessage := fmt.Sprintf("Error On Filled %s, condition: %s", e.Field(), e.ActualTag())
-			c.JSON(http.StatusBadRequest, errorMessage)
-			fmt.Println(err)
-			return
-		}
+	user, err := govalidator.ValidateStruct(input)
 
+	if !user {
+		c.JSON(http.StatusBadRequest, gin.H{
+			"Errors": err.Error(),
+		})
+		fmt.Println("error: " + err.Error())
+		return
 	}
-	user, err := h.userService.CreateUser(input)
+
+	result, err := h.userService.CreateUser(input)
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{
 			"Errors": err.Error(),
@@ -46,10 +46,10 @@ func (h *userController) RegisterUser(c *gin.Context) {
 	}
 
 	registerResponse := response.UserRegisterResponse{
-		ID:       user.ID,
-		Age:      user.Age,
-		Email:    user.Email,
-		Username: user.Username,
+		ID:       result.ID,
+		Age:      result.Age,
+		Email:    result.Email,
+		Username: result.Username,
 	}
 
 	response := helper.APIResponse("created", registerResponse)
@@ -61,14 +61,15 @@ func (h *userController) Login(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&input)
 
-	if err != nil {
-		errors := helper.FormatValidationError(err)
-		errorMessages := gin.H{
-			"errors": errors,
-		}
+	login, err := govalidator.ValidateStruct(input)
 
-		response := helper.APIResponse("failed", errorMessages)
-		c.JSON(http.StatusUnprocessableEntity, response)
+	if !login {
+		response := helper.APIResponse("failed", gin.H{
+			"errors": err.Error(),
+		})
+
+		c.JSON(http.StatusBadRequest, response)
+		fmt.Println("error: " + err.Error())
 		return
 	}
 
@@ -125,16 +126,39 @@ func (h *userController) UpdateUser(c *gin.Context) {
 
 	err := c.ShouldBindJSON(&inputUserUpdate)
 
+	user, err := govalidator.ValidateStruct(inputUserUpdate)
+
+	if !user {
+		response := helper.APIResponse("failed", gin.H{
+			"errors": err.Error(),
+		})
+		c.JSON(http.StatusBadRequest, response)
+		fmt.Println("error: " + err.Error())
+		return
+	}
+
+	var idUserUri input.UserUpdateID
+
+	err = c.ShouldBindUri(&idUserUri)
+
+	if currentUser != idUserUri.ID {
+		response := helper.APIResponse("failed", "unauthorized user")
+		c.JSON(http.StatusUnauthorized, response)
+		return
+	}
+
 	if err != nil {
 		errorMessages := helper.FormatValidationError(err)
 		response := helper.APIResponse("failed", gin.H{
 			"errors": errorMessages,
 		})
-		c.JSON(http.StatusUnprocessableEntity, response)
+		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
 		return
 	}
 
-	_, err = h.userService.UpdateUser(currentUser, inputUserUpdate)
+	id_user := idUserUri.ID
+
+	_, err = h.userService.UpdateUser(id_user, inputUserUpdate)
 
 	if err != nil {
 		response := helper.APIResponse("failed", gin.H{
@@ -144,7 +168,7 @@ func (h *userController) UpdateUser(c *gin.Context) {
 		return
 	}
 
-	userUpdated, err := h.userService.GetUserByID(currentUser)
+	userUpdated, err := h.userService.GetUserByID(id_user)
 	if err != nil {
 		response := helper.APIResponse("failed", "Cannot fetch user!")
 		c.JSON(http.StatusBadRequest, response)
@@ -166,7 +190,26 @@ func (h *userController) UpdateUser(c *gin.Context) {
 func (h *userController) DeleteUser(c *gin.Context) {
 	currentUser := c.MustGet("currentUser").(int)
 
-	_, err := h.userService.DeleteUser(currentUser)
+	var idUserUri input.UserDeleteID
+
+	err := c.ShouldBindUri(&idUserUri)
+
+	if currentUser != idUserUri.ID {
+		response := helper.APIResponse("failed", "unauthorized user")
+		c.JSON(http.StatusUnauthorized, response)
+		return
+	}
+
+	if err != nil {
+		errorMessages := helper.FormatValidationError(err)
+		response := helper.APIResponse("failed", gin.H{
+			"errors": errorMessages,
+		})
+		c.AbortWithStatusJSON(http.StatusUnauthorized, response)
+		return
+	}
+
+	userDelete, err := h.userService.DeleteUser(idUserUri.ID)
 
 	if err != nil {
 		response := helper.APIResponse("failed", gin.H{
@@ -177,7 +220,7 @@ func (h *userController) DeleteUser(c *gin.Context) {
 	}
 
 	deleteResponse := response.UserDeleteResponse{
-		Message: "Your account has been successfully deleted",
+		Message: "Your account has been successfully deleted with id " + fmt.Sprint(userDelete.ID) + "!",
 	}
 
 	response := helper.APIResponse("ok", deleteResponse)
