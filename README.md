@@ -26,8 +26,8 @@ Berikut ini adalah seluruh endpoint yang dapat diakses melalui client
 | ------ | ------ |
 | POST | [https://fp2-hacktiv8-production.up.railway.app/users/register] |
 | POST | [https://fp2-hacktiv8-production.up.railway.app/users/login |
-| PUT | [https://fp2-hacktiv8-production.up.railway.app/users] |
-| DELETE | [https://fp2-hacktiv8-production.up.railway.app/users] |
+| PUT | [https://fp2-hacktiv8-production.up.railway.app/users/:userID] |
+| DELETE | [https://fp2-hacktiv8-production.up.railway.app/users/:userID] |
 
 ###### Daftar request users
 
